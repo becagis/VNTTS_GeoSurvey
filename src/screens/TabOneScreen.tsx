@@ -1,15 +1,18 @@
-import { StyleSheet } from 'react-native'
+import { StyleSheet, TextInput } from 'react-native'
 
 import EditScreenInfo from '../components/EditScreenInfo'
 import { Text, View } from '../components/Themed'
 import { RootTabScreenProps } from '@types'
 import Message from '@/components/Message'
+import Button from '@/components/Button'
 
 export default function TabOneScreen({
   navigation,
 }: RootTabScreenProps<'TabOne'>) {
   return (
     <View style={styles.container}>
+      <Button>Hello World! Truong Thanh Tung</Button>
+
       <Message />
       <Text style={styles.title}>Home</Text>
       <View
