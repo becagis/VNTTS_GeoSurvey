@@ -4,13 +4,23 @@ module.exports = function(api) {
     presets: ['babel-preset-expo'],
     plugins: [
       'nativewind/babel',
+      'react-native-reanimated/plugin',
       [
         'module-resolver',
         {
           alias: {
             '@': './src',
             '@types': './src/types',
-            '@assets': './assets'
+            '@assets': './assets',
+
+            '@ttungbmt/react-native-form': './src/@react-native-form/src',
+
+            '@fortawesome/pro-solid-svg-icons': './assets/fonts/fontawesome-pro/svgs/solid',
+            '@fortawesome/pro-regular-svg-icons': './assets/fonts/fontawesome-pro/svgs/regular',
+            '@fortawesome/pro-light-svg-icons': './assets/fonts/fontawesome-pro/svgs/light',
+            '@fortawesome/pro-thin-svg-icons': './assets/fonts/fontawesome-pro/svgs/thin',
+            '@fortawesome/pro-duotone-svg-icons': './assets/fonts/fontawesome-pro/svgs/duotone',
+            '@fortawesome/pro-sharp-solid-svg-icons': './assets/fonts/fontawesome-pro/svgs/sharp-solid'
           }
         }
       ]

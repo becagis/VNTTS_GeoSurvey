@@ -23,13 +23,17 @@ export type RootStackParamList = {
   NotFound: undefined;
 };
 
+export type RootDrawerParamList = {
+
+}
+
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> = NativeStackScreenProps<
   RootStackParamList,
   Screen
 >;
 
 export type RootTabParamList = {
-  TabOne: undefined;
+  TabMap: undefined;
   TabTwo: undefined;
 };
 

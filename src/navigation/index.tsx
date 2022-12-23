@@ -14,14 +14,15 @@ import Colors from '../constants/Colors'
 import useColorScheme from '../hooks/useColorScheme'
 import ModalScreen from '@/screens/ModalScreen'
 import NotFoundScreen from '@/screens/NotFoundScreen'
-import TabOneScreen from '@/screens/TabOneScreen'
+import TabMapScreen from '@/screens/TabMapScreen'
 import TabTwoScreen from '@/screens/TabTwoScreen'
-import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '@types'
+import { RootDrawerParamList, RootStackParamList, RootTabParamList, RootTabScreenProps } from '@types'
 import LinkingConfiguration from './LinkingConfiguration'
 
 import LoginScreen from '@/screens/LoginScreen'
 import RegisterScreen from '@/screens/RegisterScreen'
 import ResetPasswordScreen from '@/screens/ResetPasswordScreen'
+import { createDrawerNavigator } from '@react-navigation/drawer'
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -39,15 +40,17 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+const Drawer = createDrawerNavigator<RootDrawerParamList>();
+
 function RootNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Root"
     >
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: true }} />
+      <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: true }} />
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen} options={{ headerShown: true }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
@@ -67,16 +70,17 @@ function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="TabMap"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
       }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+        name="TabMap"
+        component={TabMapScreen}
+        options={({ navigation }: RootTabScreenProps<'TabMap'>) => ({
+          title: 'Map',
+          tabBarLabel: 'Map',
+          tabBarIcon: ({ color, size }) => <TabBarIcon name="map" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Login')}

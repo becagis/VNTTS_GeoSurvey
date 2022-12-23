@@ -1,17 +1,23 @@
-import { StyleSheet, TextInput } from 'react-native'
+import { StyleSheet } from 'react-native'
 
 import EditScreenInfo from '../components/EditScreenInfo'
 import { Text, View } from '../components/Themed'
 import { RootTabScreenProps } from '@types'
 import Message from '@/components/Message'
-import Button from '@/components/Button'
+import { Button, useTheme } from 'native-base'
 
-export default function TabOneScreen({
+function TabMapScreen({
   navigation,
-}: RootTabScreenProps<'TabOne'>) {
+}: RootTabScreenProps<'TabMap'>) {
+  const {
+    colors
+  } = useTheme();
+
+  console.log(colors)
+
   return (
     <View style={styles.container}>
-      <Button>Hello World! Truong Thanh Tung</Button>
+      <Button>Hello World!</Button>
 
       <Message />
       <Text style={styles.title}>Home</Text>
@@ -20,7 +26,7 @@ export default function TabOneScreen({
         lightColor="#eee"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <EditScreenInfo path="/screens/TabMapScreen.tsx" />
     </View>
   )
 }
@@ -41,3 +47,5 @@ const styles = StyleSheet.create({
     width: '80%',
   },
 });
+
+export default TabMapScreen

@@ -1,11 +1,10 @@
 import { StatusBar } from 'expo-status-bar'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { registerRootComponent } from 'expo'
-import { NativeBaseProvider } from 'native-base'
 
 import useCachedResources from '@/hooks/useCachedResources'
 import useColorScheme from '@/hooks/useColorScheme'
 import Navigation from '@/navigation'
+import withAppProviders from '@/withAppProviders'
 
 function App() {
   const isLoadingComplete = useCachedResources()
@@ -16,13 +15,11 @@ function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <NativeBaseProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </NativeBaseProvider>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar/>
       </SafeAreaProvider>
     )
   }
 }
 
-registerRootComponent(App)
+export default withAppProviders(App)()
