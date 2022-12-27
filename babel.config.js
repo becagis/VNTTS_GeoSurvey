@@ -6,11 +6,19 @@ module.exports = function(api) {
       'nativewind/babel',
       'react-native-reanimated/plugin',
       [
+        'module:react-native-dotenv',
+        {
+          envName: 'APP_ENV',
+          moduleName: '@env',
+          path: '.env'
+        }
+      ],
+      [
         'module-resolver',
         {
           alias: {
             '@': './src',
-            '@types': './src/types',
+            '@types': './types',
             '@assets': './assets',
 
             '@ttungbmt/react-native-form': './src/@react-native-form/src',

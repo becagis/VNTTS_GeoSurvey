@@ -20,6 +20,16 @@ export type RootStackParamList = {
   Register: undefined;
   ResetPassword: undefined;
   Dashboard: undefined;
+  SurveyList: undefined;
+  SurveyDetail: undefined;
+  SurveyForm: undefined;
+  FeatureForm: undefined;
+  Account: undefined;
+  Export: undefined;
+  FormData: undefined;
+  About: undefined;
+  Setting: undefined;
+  Feedback: undefined;
   NotFound: undefined;
 };
 
@@ -34,7 +44,7 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> = Nati
 
 export type RootTabParamList = {
   TabMap: undefined;
-  TabTwo: undefined;
+  TabAccount: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> = CompositeScreenProps<

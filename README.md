@@ -27,3 +27,9 @@ Pó tay, setup mãi vẫn bị lỗi => quá tốn time, run truyển thống
 
 ### Build APK
 - https://dev.to/chinmaymhatre/how-to-generate-apk-using-react-native-expo-kae
+
+## Case
+### Signout
+- Expired time
+- Inactivity
+

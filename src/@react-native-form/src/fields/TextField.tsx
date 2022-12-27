@@ -4,6 +4,7 @@ import { get } from 'lodash'
 
 interface ITextFieldProps {
   name: string;
+  type?: string;
   label?: string;
   placeholder?: string;
   rules?: object
@@ -12,7 +13,7 @@ interface ITextFieldProps {
 const {Label, ErrorMessage} = FormControl
 
 function TextField(props: ITextFieldProps) {
-  const {name, label, placeholder, rules} = props
+  const {type, name, label, placeholder, rules} = props
   const { control } = useFormContext()
 
   const {
@@ -38,6 +39,7 @@ function TextField(props: ITextFieldProps) {
         value={value}
         onChangeText={(val) => onChange(val)}
         onBlur={onBlur}
+        secureTextEntry={type === 'password'}
       />
 
       {errorMessage && (
