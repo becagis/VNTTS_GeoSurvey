@@ -1,5 +1,7 @@
 # GeoSurvey Native
 
+- https://github.com/pavel-corsaghin/react-native-leaflet
+
 ## Run
 
 ```shell
@@ -28,8 +30,33 @@ Pó tay, setup mãi vẫn bị lỗi => quá tốn time, run truyển thống
 ### Build APK
 - https://dev.to/chinmaymhatre/how-to-generate-apk-using-react-native-expo-kae
 
+
+
 ## Case
 ### Signout
 - Expired time
 - Inactivity
 
+## Communication Web, Native
+- https://github.com/react-native-webview/react-native-webview/blob/master/docs/Guide.md#communicating-between-js-and-native
+```js
+// Native to Web
+webviewRef.current?.postMessage('');
+
+this.webviewref.injectJavaScript(`
+  document.body.style.backgroundColor = 'blue';
+  true;
+`)
+
+window.addEventListener("message", message => {
+  
+});
+
+// Web To Native
+window.ReactNativeWebView?.postMessage('');
+
+
+const handleMessage = (event: WebViewMessageEvent) => {
+  console.log(event?.nativeEvent)
+}
+```

@@ -7,8 +7,7 @@ import Message from '@/components/Message'
 import { Button, Fab, Icon, useTheme } from 'native-base'
 import { Link } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
-import WebView from 'react-native-webview'
-import LeafletView from '@/screens/LeafletView'
+import LeafletView from '@/components/LeafletView'
 
 function TabMapScreen({
   navigation,
@@ -20,7 +19,9 @@ function TabMapScreen({
     <View style={styles.container}>
       {/*<Message />*/}
       {/*<Text style={styles.title}>Home</Text>*/}
+
       <LeafletView />
+
 
       <Fab
         renderInPortal={false}
