@@ -1,21 +1,22 @@
 {
-  "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"],
-      "@types": ["./types"],
-      "@assets/*": ["./assets/*"],
-
-      "@ttungbmt/react-native-form": ["./src/@react-native-form/src"],
-
-      "@fortawesome/pro-solid-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/solid"],
-      "@fortawesome/pro-regular-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/regular"],
-      "@fortawesome/pro-light-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/light"],
-      "@fortawesome/pro-thin-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/thin"],
-      "@fortawesome/pro-duotone-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/duotone"],
-      "@fortawesome/pro-sharp-solid-svg-icons": ["./assets/fonts/fontawesome-pro/svgs/sharp-solid"]
-    }
-  }
+    "allowJs": false,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "jsx": "react-native",
+    "module": "es2015",
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "sourceMap": true,
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["index.js", "App.js", "app", "test"],
+  "extends": "expo/tsconfig.base"
 }

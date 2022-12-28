@@ -1,37 +1,39 @@
-module.exports = function(api) {
-  api.cache(true)
-  return {
-    presets: ['babel-preset-expo'],
-    plugins: [
-      'nativewind/babel',
-      'react-native-reanimated/plugin',
-      [
-        'module:react-native-dotenv',
-        {
-          envName: 'APP_ENV',
-          moduleName: '@env',
-          path: '.env'
-        }
-      ],
-      [
-        'module-resolver',
-        {
-          alias: {
-            '@': './src',
-            '@types': './types',
-            '@assets': './assets',
+const plugins = [
+  [
+    "@babel/plugin-proposal-decorators",
+    {
+      legacy: true,
+    },
+  ],
+  ["@babel/plugin-proposal-optional-catch-binding"],
+  "react-native-reanimated/plugin", // NOTE: this must be last in the plugins
+]
 
-            '@ttungbmt/react-native-form': './src/@react-native-form/src',
-
-            '@fortawesome/pro-solid-svg-icons': './assets/fonts/fontawesome-pro/svgs/solid',
-            '@fortawesome/pro-regular-svg-icons': './assets/fonts/fontawesome-pro/svgs/regular',
-            '@fortawesome/pro-light-svg-icons': './assets/fonts/fontawesome-pro/svgs/light',
-            '@fortawesome/pro-thin-svg-icons': './assets/fonts/fontawesome-pro/svgs/thin',
-            '@fortawesome/pro-duotone-svg-icons': './assets/fonts/fontawesome-pro/svgs/duotone',
-            '@fortawesome/pro-sharp-solid-svg-icons': './assets/fonts/fontawesome-pro/svgs/sharp-solid'
-          }
-        }
-      ]
-    ]
-  }
+const vanillaConfig = {
+  presets: ["module:metro-react-native-babel-preset"],
+  env: {
+    production: {},
+  },
+  plugins,
 }
+
+const expoConfig = {
+  presets: ["babel-preset-expo"],
+  env: {
+    production: {},
+  },
+  plugins,
+}
+
+let isExpo = false
+try {
+  const Constants = require("expo-constants")
+  // True if the app is running in an `expo build` app or if it's running in Expo Go.
+  isExpo =
+    Constants.executionEnvironment === "standalone" ||
+    Constants.executionEnvironment === "storeClient"
+} catch {}
+
+const babelConfig = isExpo ? expoConfig : vanillaConfig
+
+module.exports = babelConfig
