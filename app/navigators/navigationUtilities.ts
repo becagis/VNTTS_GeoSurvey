@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from "react"
-import { BackHandler, Platform } from "react-native"
+import { useState, useEffect, useRef } from 'react'
+import { BackHandler, Platform } from 'react-native'
 import {
   PartialState,
   NavigationState,
   NavigationAction,
   createNavigationContainerRef,
-} from "@react-navigation/native"
-import Config from "../config"
-import type { PersistNavigationConfig } from "../config/config.base"
-import { useIsMounted } from "../utils/useIsMounted"
+} from '@react-navigation/native'
+import Config from '../config'
+import type { PersistNavigationConfig } from '../config/config.base'
+import { useIsMounted } from '../utils/useIsMounted'
 
 /* eslint-disable */
 export const RootNavigation = {
@@ -43,7 +43,7 @@ export function getActiveRouteName(state: NavigationState | PartialState<Navigat
  */
 export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
   // ignore if iOS ... no back button!
-  if (Platform.OS === "ios") return
+  if (Platform.OS === 'ios') return
 
   // The reason we're using a ref here is because we need to be able
   // to update the canExit function without re-setting up all the listeners
@@ -80,10 +80,10 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
     }
 
     // Subscribe when we come to life
-    BackHandler.addEventListener("hardwareBackPress", onBackPress)
+    BackHandler.addEventListener('hardwareBackPress', onBackPress)
 
     // Unsubscribe when we're done
-    return () => BackHandler.removeEventListener("hardwareBackPress", onBackPress)
+    return () => BackHandler.removeEventListener('hardwareBackPress', onBackPress)
   }, [])
 }
 
@@ -92,9 +92,9 @@ export function useBackButtonHandler(canExit: (routeName: string) => boolean) {
  * based on a config setting and the __DEV__ environment (dev or prod).
  */
 function navigationRestoredDefaultState(persistNavigation: PersistNavigationConfig) {
-  if (persistNavigation === "always") return false
-  if (persistNavigation === "dev" && __DEV__) return false
-  if (persistNavigation === "prod" && !__DEV__) return false
+  if (persistNavigation === 'always') return false
+  if (persistNavigation === 'dev' && __DEV__) return false
+  if (persistNavigation === 'prod' && !__DEV__) return false
 
   // all other cases, disable restoration by returning true
   return true

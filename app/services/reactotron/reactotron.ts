@@ -12,17 +12,17 @@
  *
  * @refresh reset
  */
-import { Platform } from "react-native"
-import { Reactotron } from "./reactotronClient"
-import { ArgType } from "reactotron-core-client"
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { onSnapshot } from "mobx-state-tree"
-import { mst } from "reactotron-mst"
-import { RootStore } from "../../models/RootStore"
-import { clear } from "../../utils/storage"
-import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from "./reactotronConfig"
-import { goBack, resetRoot, navigate } from "../../navigators/navigationUtilities"
-import { fakeReactotron } from "./reactotronFake"
+import { Platform } from 'react-native'
+import { Reactotron } from './reactotronClient'
+import { ArgType } from 'reactotron-core-client'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { onSnapshot } from 'mobx-state-tree'
+import { mst } from 'reactotron-mst'
+import { RootStore } from '../../models/RootStore'
+import { clear } from '../../utils/storage'
+import { ReactotronConfig, DEFAULT_REACTOTRON_CONFIG } from './reactotronConfig'
+import { goBack, resetRoot, navigate } from '../../navigators/navigationUtilities'
+import { fakeReactotron } from './reactotronFake'
 
 /**
  * We tell typescript we intend to hang Reactotron off of the console object.
@@ -62,17 +62,17 @@ const config = DEFAULT_REACTOTRON_CONFIG
 export function setReactotronRootStore(rootStore: RootStore, initialData: any) {
   if (__DEV__) {
     const { logInitialState, logSnapshots } = config
-    const name = "ROOT STORE"
+    const name = 'ROOT STORE'
 
     // logging features
     if (logInitialState) {
-      Reactotron.display({ name, value: initialData, preview: "Initial State" })
+      Reactotron.display({ name, value: initialData, preview: 'Initial State' })
     }
 
     // log state changes?
     if (logSnapshots) {
       onSnapshot(rootStore, (snapshot) => {
-        Reactotron.display({ name, value: snapshot, preview: "New State" })
+        Reactotron.display({ name, value: snapshot, preview: 'New State' })
       })
     }
 
@@ -98,12 +98,12 @@ export function setupReactotron(customConfig: ReactotronConfig = {}) {
 
     // configure reactotron
     Reactotron.configure({
-      name: config.name || require("../../../package.json").name,
+      name: config.name || require('../../../package.json').name,
       host: config.host,
     })
 
     // hookup middleware
-    if (Platform.OS !== "web") {
+    if (Platform.OS !== 'web') {
       if (config.useAsyncStorage) {
         Reactotron.setAsyncStorageHandler(AsyncStorage)
       }
@@ -119,7 +119,7 @@ export function setupReactotron(customConfig: ReactotronConfig = {}) {
     Reactotron.use(
       mst({
         filter: (event) => RX.test(event.name) === false,
-      }),
+      })
     )
 
     // connect to the app
@@ -134,52 +134,52 @@ export function setupReactotron(customConfig: ReactotronConfig = {}) {
      * get your app into the state you want.
      */
     Reactotron.onCustomCommand({
-      title: "Reset Root Store",
-      description: "Resets the MST store",
-      command: "resetStore",
+      title: 'Reset Root Store',
+      description: 'Resets the MST store',
+      command: 'resetStore',
       handler: () => {
-        Reactotron.log("resetting store")
+        Reactotron.log('resetting store')
         clear()
       },
     })
 
     Reactotron.onCustomCommand({
-      title: "Reset Navigation State",
-      description: "Resets the navigation state",
-      command: "resetNavigation",
+      title: 'Reset Navigation State',
+      description: 'Resets the navigation state',
+      command: 'resetNavigation',
       handler: () => {
-        Reactotron.log("resetting navigation state")
+        Reactotron.log('resetting navigation state')
         resetRoot({ index: 0, routes: [] })
       },
     })
 
     Reactotron.onCustomCommand({
-      command: "navigateTo",
+      command: 'navigateTo',
       handler: (args) => {
         const { route } = args
         if (route) {
           console.log(`Navigating to: ${route}`)
           navigate(route)
         } else {
-          console.log("Could not navigate. No route provided.")
+          console.log('Could not navigate. No route provided.')
         }
       },
-      title: "Navigate To Screen",
-      description: "Navigates to a screen by name.",
+      title: 'Navigate To Screen',
+      description: 'Navigates to a screen by name.',
       args: [
         {
-          name: "route",
+          name: 'route',
           type: ArgType.String,
         },
       ],
     })
 
     Reactotron.onCustomCommand({
-      title: "Go Back",
-      description: "Goes back",
-      command: "goBack",
+      title: 'Go Back',
+      description: 'Goes back',
+      command: 'goBack',
       handler: () => {
-        Reactotron.log("Going back")
+        Reactotron.log('Going back')
         goBack()
       },
     })

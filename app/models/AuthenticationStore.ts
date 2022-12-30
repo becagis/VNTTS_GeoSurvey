@@ -1,11 +1,11 @@
-import { Instance, SnapshotOut, types } from "mobx-state-tree"
+import { Instance, SnapshotOut, types } from 'mobx-state-tree'
 
 export const AuthenticationStoreModel = types
-  .model("AuthenticationStore")
+  .model('AuthenticationStore')
   .props({
     authToken: types.maybe(types.string),
-    authEmail: "",
-    authPassword: "",
+    authEmail: '',
+    authPassword: '',
   })
   .views((store) => ({
     get isAuthenticated() {
@@ -15,15 +15,15 @@ export const AuthenticationStoreModel = types
       return {
         authEmail: (function () {
           if (store.authEmail.length === 0) return "can't be blank"
-          if (store.authEmail.length < 6) return "must be at least 6 characters"
+          if (store.authEmail.length < 6) return 'must be at least 6 characters'
           if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(store.authEmail))
-            return "must be a valid email address"
-          return ""
+            return 'must be a valid email address'
+          return ''
         })(),
         authPassword: (function () {
           if (store.authPassword.length === 0) return "can't be blank"
-          if (store.authPassword.length < 6) return "must be at least 6 characters"
-          return ""
+          if (store.authPassword.length < 6) return 'must be at least 6 characters'
+          return ''
         })(),
       }
     },
@@ -33,15 +33,15 @@ export const AuthenticationStoreModel = types
       store.authToken = value
     },
     setAuthEmail(value: string) {
-      store.authEmail = value.replace(/ /g, "")
+      store.authEmail = value.replace(/ /g, '')
     },
     setAuthPassword(value: string) {
-      store.authPassword = value.replace(/ /g, "")
+      store.authPassword = value.replace(/ /g, '')
     },
     logout() {
       store.authToken = undefined
-      store.authEmail = ""
-      store.authPassword = ""
+      store.authEmail = ''
+      store.authPassword = ''
     },
   }))
   .preProcessSnapshot((snapshot) => {
